@@ -9,7 +9,6 @@ import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
 import com.example.insurance_calculator.core.underwriting.TravelPremiumCalculationResult;
 import com.example.insurance_calculator.core.underwriting.TravelUnderwriting;
 import com.example.insurance_calculator.core.util.AgreementSaveUtil;
-import com.example.insurance_calculator.core.validations.calculate.TravelAgreementValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +20,6 @@ import java.util.List;
 @Transactional
 @Component
 public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService{
-    @Autowired
-    private TravelAgreementValidator validator;
-
     @Autowired
     private TravelUnderwriting underwriting;
 

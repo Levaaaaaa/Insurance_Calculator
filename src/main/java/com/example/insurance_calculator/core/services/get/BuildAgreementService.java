@@ -5,7 +5,7 @@ import com.example.insurance_calculator.core.TE_PERSON_MEDICAL_STATUS;
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.core.api.dto.RiskDTO;
-import com.example.insurance_calculator.core.domain.agreement.*;
+import com.example.insurance_calculator.core.entities.agreement.*;
 import com.example.insurance_calculator.core.repositories.agreement.AgreementPersonEntityRepository;
 import com.example.insurance_calculator.core.repositories.agreement.AgreementRiskEntityRepository;
 import com.example.insurance_calculator.core.repositories.agreement.PersonRiskEntityRepository;
@@ -29,41 +29,41 @@ public class BuildAgreementService {
 
     @Autowired
     private PersonRiskEntityRepository personRiskEntityRepository;
-    public AgreementDTO buildAgreement(AgreementEntityDomain agreementEntityDomain){
+    public AgreementDTO buildAgreement(AgreementEntity agreementEntity){
         AgreementDTO agreementDTO = new AgreementDTO();
-        agreementDTO.setAgreementDateFrom(agreementEntityDomain.getDateFrom());
-        agreementDTO.setAgreementDateTo(agreementEntityDomain.getDateTo());
-        agreementDTO.setCountry(agreementEntityDomain.getCountry());
-        agreementDTO.setUuid(agreementEntityDomain.getUuid());
+        agreementDTO.setAgreementDateFrom(agreementEntity.getDateFrom());
+        agreementDTO.setAgreementDateTo(agreementEntity.getDateTo());
+        agreementDTO.setCountry(agreementEntity.getCountry());
+        agreementDTO.setUuid(agreementEntity.getUuid());
         agreementDTO.setSelectedRisks(
-                buildSelectedRisks(agreementEntityDomain)
+                buildSelectedRisks(agreementEntity)
         );
-        agreementDTO.setAgreementPremium(agreementEntityDomain.getPremium());
+        agreementDTO.setAgreementPremium(agreementEntity.getPremium());
 
         agreementDTO.setPersons(
-                buildPersons(agreementEntityDomain)
+                buildPersons(agreementEntity)
         );
-        agreementDTO.setCost(agreementEntityDomain.getCost());
+        agreementDTO.setCost(agreementEntity.getCost());
         return agreementDTO;
     }
 
-    private List<String> buildSelectedRisks(AgreementEntityDomain agreementEntityDomain) {
+    private List<String> buildSelectedRisks(AgreementEntity agreementEntity) {
         List<String> risks = Arrays.stream(RISKS.values())
                 .map(risk ->
                 {
-                    return riskEntityRepository.findByIcAndAgreement(risk.name(), agreementEntityDomain);
+                    return riskEntityRepository.findByIcAndAgreement(risk.name(), agreementEntity);
                 })
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .map(AgreementRiskEntityDomain::getRiskIc)
+                .map(AgreementWithRiskEntity::getRiskIc)
                 .toList();
         return risks;
     }
 
-    private List<PersonDTO> buildPersons(AgreementEntityDomain agreementEntityDomain) {
-        return agreementPersonEntityRepository.findByAgreement(agreementEntityDomain).stream()
+    private List<PersonDTO> buildPersons(AgreementEntity agreementEntity) {
+        return agreementPersonEntityRepository.findByAgreement(agreementEntity).stream()
                 .map(agreementPerson -> {
-                    PersonDTODomain personDomain = agreementPerson.getPerson();
+                    PersonEntity personDomain = agreementPerson.getPerson();
                     PersonDTO personDTO = new PersonDTO();
                     personDTO.setPersonFirstName(personDomain.getPersonFirstName());
                     personDTO.setPersonLastName(personDomain.getPersonLastName());
@@ -83,7 +83,7 @@ public class BuildAgreementService {
                 }).toList();
     }
 
-    private List<RiskDTO> buildPersonRisks(AgreementPersonEntityDomain agreementPerson) {
+    private List<RiskDTO> buildPersonRisks(PersonInAgreementEntity agreementPerson) {
         return Arrays.stream(RISKS.values())
                 .map(riskIc ->
                 {

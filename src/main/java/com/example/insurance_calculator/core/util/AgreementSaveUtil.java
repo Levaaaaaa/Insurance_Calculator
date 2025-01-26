@@ -1,7 +1,7 @@
 package com.example.insurance_calculator.core.util;
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
-import com.example.insurance_calculator.core.domain.agreement.*;
+import com.example.insurance_calculator.core.entities.agreement.*;
 import com.example.insurance_calculator.core.services.agreement.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,19 +30,19 @@ public class AgreementSaveUtil {
     @Autowired
     private PersonRiskEntityService personRiskEntityService;
     public void saveAgreement(AgreementDTO agreementDTO) {
-        AgreementEntityDomain agreementEntityDomain = agreementEntityService.saveAgreement(agreementDTO);
+        AgreementEntity agreementEntity = agreementEntityService.saveAgreement(agreementDTO);
 
 //        List<PersonDTODomain> personDTOs = agreementDTO.getPersons().stream().map(person-> personEntityService.getPersonEntity(person, agreementEntityDomain)).toList();
-        List<PersonRiskEntityDomain> personRisks = new LinkedList<>();
+        List<PersonsRiskEntity> personRisks = new LinkedList<>();
 
 
-        List<AgreementPersonEntityDomain> personDomains =
+        List<PersonInAgreementEntity> personDomains =
                 agreementDTO.getPersons().stream().map(
                         person -> {
-                            PersonDTODomain personDomain = personEntityService.getPersonEntity(person, agreementEntityDomain);
-                            AgreementPersonEntityDomain personEntityDomain =
+                            PersonEntity personDomain = personEntityService.getPersonEntity(person, agreementEntity);
+                            PersonInAgreementEntity personEntityDomain =
                                     agreementPersonEntityService.savePerson(
-                                            personDomain, person, agreementEntityDomain
+                                            personDomain, person, agreementEntity
                                     );
                             personRisks.addAll(
                                 person.getSelectedRisks().stream().map(
@@ -55,8 +55,8 @@ public class AgreementSaveUtil {
                         })
                         .toList();
 
-        List<AgreementRiskEntityDomain> agreementRisks = agreementDTO.getSelectedRisks().stream().map(riskIc -> {
-            return riskEntityService.saveRisk(riskIc, agreementEntityDomain);
+        List<AgreementWithRiskEntity> agreementRisks = agreementDTO.getSelectedRisks().stream().map(riskIc -> {
+            return riskEntityService.saveRisk(riskIc, agreementEntity);
         }).toList();
 
 //        List<AgreementPersonEntityDomain> persons = agreementPersonEntityService.savePersons(agreementDTO);

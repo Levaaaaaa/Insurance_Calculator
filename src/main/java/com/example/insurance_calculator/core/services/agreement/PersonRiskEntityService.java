@@ -1,8 +1,8 @@
 package com.example.insurance_calculator.core.services.agreement;
 
 import com.example.insurance_calculator.core.api.dto.RiskDTO;
-import com.example.insurance_calculator.core.domain.agreement.AgreementPersonEntityDomain;
-import com.example.insurance_calculator.core.domain.agreement.PersonRiskEntityDomain;
+import com.example.insurance_calculator.core.entities.agreement.PersonInAgreementEntity;
+import com.example.insurance_calculator.core.entities.agreement.PersonsRiskEntity;
 import com.example.insurance_calculator.core.repositories.agreement.PersonRiskEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,13 @@ public class PersonRiskEntityService {
     @Autowired
     private PersonRiskEntityRepository personRiskEntityRepository;
 
-    public PersonRiskEntityDomain savePersonRisk(RiskDTO risk, AgreementPersonEntityDomain personEntityDomain) {
-        Optional<PersonRiskEntityDomain> optional = personRiskEntityRepository.findByIcAndPerson(risk.getRiskIc(), personEntityDomain);
+    public PersonsRiskEntity savePersonRisk(RiskDTO risk, PersonInAgreementEntity personEntityDomain) {
+        Optional<PersonsRiskEntity> optional = personRiskEntityRepository.findByIcAndPerson(risk.getRiskIc(), personEntityDomain);
         if (optional.isPresent()) {
             return optional.get();
         }
 
-        PersonRiskEntityDomain riskDomain = new PersonRiskEntityDomain();
+        PersonsRiskEntity riskDomain = new PersonsRiskEntity();
         riskDomain.setRiskIc(risk.getRiskIc());
         riskDomain.setPerson(personEntityDomain);
         riskDomain.setPremium(risk.getPremium());

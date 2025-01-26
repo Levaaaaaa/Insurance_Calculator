@@ -32,4 +32,11 @@ public class ErrorCodeUtil {
         return errorDescription;
     }
 
+    public String getErrorDescription(String errorCode, Placeholder placeholder) {
+        String errorDescription = props.getProperty(errorCode);
+        String placeholderToReplace = "{" + placeholder.getPlaceholderName() + "}";
+        errorDescription = errorDescription.replace(placeholderToReplace, placeholder.getPlaceholderValue());
+        return errorDescription;
+    }
+
 }

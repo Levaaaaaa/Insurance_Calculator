@@ -1,20 +1,20 @@
 package com.example.insurance_calculator.core.repositories.agreement;
 
-import com.example.insurance_calculator.core.domain.agreement.AgreementEntityDomain;
-import com.example.insurance_calculator.core.domain.agreement.AgreementRiskEntityDomain;
+import com.example.insurance_calculator.core.entities.agreement.AgreementEntity;
+import com.example.insurance_calculator.core.entities.agreement.AgreementWithRiskEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
 
-public interface AgreementRiskEntityRepository extends JpaRepository<AgreementRiskEntityDomain, Long> {
+public interface AgreementRiskEntityRepository extends JpaRepository<AgreementWithRiskEntity, Long> {
  //   Optional<AgreementRiskEntityDomain> findByRiskIc(String riskIc);
 
-    @Query("SELECT risk FROM AgreementRiskEntityDomain risk " +
+    @Query("SELECT risk FROM AgreementWithRiskEntity risk " +
             "LEFT JOIN risk.agreement a " +
             "where risk.riskIc = :ic " +
             "and a = :agr")
-    Optional<AgreementRiskEntityDomain> findByIcAndAgreement(@Param("ic")String riskIc,
-                                                             @Param("agr")AgreementEntityDomain agreement);
+    Optional<AgreementWithRiskEntity> findByIcAndAgreement(@Param("ic")String riskIc,
+                                                           @Param("agr") AgreementEntity agreement);
 }

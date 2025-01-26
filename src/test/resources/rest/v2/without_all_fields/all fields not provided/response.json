@@ -1,6 +1,4 @@
-{
-  "errors": [
-    {
+[{
       "errorCode": "ERROR_CODE_2",
       "description": "Field agreementDateFrom must not be empty!"
     },
@@ -51,6 +49,4 @@
     {
       "errorCode":"ERROR_CODE_19",
       "description":"Field agreementCost must not be null!"
-    }
-  ]
-}
+    }]

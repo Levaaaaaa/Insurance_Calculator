@@ -1,6 +1,6 @@
 package com.example.insurance_calculator.core.repositories.calculate.medical;
 
-import com.example.insurance_calculator.core.domain.calculate.medical.MedicalRiskLimitLevel;
+import com.example.insurance_calculator.core.entities.calculate.medical.MedicalRiskLimitLevel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

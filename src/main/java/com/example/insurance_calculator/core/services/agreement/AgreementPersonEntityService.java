@@ -1,9 +1,9 @@
 package com.example.insurance_calculator.core.services.agreement;
 
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.domain.agreement.AgreementEntityDomain;
-import com.example.insurance_calculator.core.domain.agreement.AgreementPersonEntityDomain;
-import com.example.insurance_calculator.core.domain.agreement.PersonDTODomain;
+import com.example.insurance_calculator.core.entities.agreement.AgreementEntity;
+import com.example.insurance_calculator.core.entities.agreement.PersonInAgreementEntity;
+import com.example.insurance_calculator.core.entities.agreement.PersonEntity;
 import com.example.insurance_calculator.core.repositories.agreement.AgreementPersonEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,8 @@ public class AgreementPersonEntityService {
     private AgreementPersonEntityRepository agreementPersonEntityRepository;
 
 
-    public AgreementPersonEntityDomain savePerson(PersonDTODomain personDomain, PersonDTO person, AgreementEntityDomain agreementDomain) {
-        Optional<AgreementPersonEntityDomain> optional = agreementPersonEntityRepository.findByName(
+    public PersonInAgreementEntity savePerson(PersonEntity personDomain, PersonDTO person, AgreementEntity agreementDomain) {
+        Optional<PersonInAgreementEntity> optional = agreementPersonEntityRepository.findByName(
                 person.getPersonFirstName(),
                 person.getPersonLastName(),
                 person.getPersonIc()
@@ -27,7 +27,7 @@ public class AgreementPersonEntityService {
             return optional.get();
         }
 
-        AgreementPersonEntityDomain newDomain = new AgreementPersonEntityDomain();
+        PersonInAgreementEntity newDomain = new PersonInAgreementEntity();
 
         newDomain.setPerson(personDomain);
         newDomain.setMedicalRiskLimitLevel(person.getMedicalRiskLimitLevel());

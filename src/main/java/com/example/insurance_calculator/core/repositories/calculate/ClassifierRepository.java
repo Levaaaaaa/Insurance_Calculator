@@ -1,6 +1,6 @@
 package com.example.insurance_calculator.core.repositories.calculate;
 
-import com.example.insurance_calculator.core.domain.calculate.Classifier;
+import com.example.insurance_calculator.core.entities.calculate.Classifier;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 

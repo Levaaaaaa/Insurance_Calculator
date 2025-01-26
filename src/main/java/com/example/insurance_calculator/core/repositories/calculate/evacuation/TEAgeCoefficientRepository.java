@@ -1,7 +1,7 @@
 package com.example.insurance_calculator.core.repositories.calculate.evacuation;
 
 
-import com.example.insurance_calculator.core.domain.calculate.evacuation.TEAgeCoefficientDomain;
+import com.example.insurance_calculator.core.entities.calculate.evacuation.TEAgeCoefficientDomain;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

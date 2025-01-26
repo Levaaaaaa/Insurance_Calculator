@@ -2,7 +2,7 @@ package com.example.insurance_calculator.core.underwriting.calculators.evacuatio
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.domain.calculate.evacuation.TEAgeCoefficientDomain;
+import com.example.insurance_calculator.core.entities.calculate.evacuation.TEAgeCoefficientDomain;
 import com.example.insurance_calculator.core.repositories.calculate.evacuation.TEAgeCoefficientRepository;
 import com.example.insurance_calculator.core.util.CalculateAgeUtil;
 import org.springframework.beans.factory.annotation.Autowired;

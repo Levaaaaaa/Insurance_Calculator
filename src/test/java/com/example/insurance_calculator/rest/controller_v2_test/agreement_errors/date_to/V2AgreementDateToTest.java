@@ -2,19 +2,20 @@ package com.example.insurance_calculator.rest.controller_v2_test.agreement_error
 
 import com.example.insurance_calculator.rest.controller_v2_test.TravelCalculatePremiumControllerV2TestCase;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 
 public class V2AgreementDateToTest extends TravelCalculatePremiumControllerV2TestCase {
 
     //date_to is null
     @Test
     public void execute9() throws Exception {
-        executeAndCompare("date_to is null");
+        executeAndCompare("date_to is null", HttpStatus.BAD_REQUEST);
     }
 
     //date_to is in the past
     @Test
     public void execute11() throws Exception {
-        executeAndCompare("date_to is in the past");
+        executeAndCompare("date_to is in the past", HttpStatus.BAD_REQUEST);
     }
 
     @Override

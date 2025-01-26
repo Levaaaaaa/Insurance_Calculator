@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan("com.example.insurance_calculator.core.domain")
 public class InsuranceCalculatorApplication {
 
 	public static void main(String[] args) {

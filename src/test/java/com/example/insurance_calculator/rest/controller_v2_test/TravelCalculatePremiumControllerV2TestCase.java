@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import static com.example.insurance_calculator.rest.RemoveRandomValues.removeRandomValues;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -29,21 +31,28 @@ public abstract class TravelCalculatePremiumControllerV2TestCase {
 
     protected abstract String getTestCaseFolderPath();
 
-    protected void executeAndCompare(String testCaseFolderName) throws Exception{
+    protected void executeAndCompare(String testCaseFolderName, HttpStatus expectedStatus) throws Exception{
         executeAndCompare(
                 "rest/v2/" + getTestCaseFolderPath() + testCaseFolderName + "/request.json",
-                "rest/v2/" + getTestCaseFolderPath() + testCaseFolderName + "/response.json"
+                "rest/v2/" + getTestCaseFolderPath() + testCaseFolderName + "/response.json",
+                expectedStatus
         );
     }
 
     protected void executeAndCompare(String jsonRequestFilePath,
-                                     String jsonResponseFilePath) throws Exception {
+                                     String jsonResponseFilePath,
+                                     HttpStatus expectedStatus) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
+
+        ResultMatcher matcher = switch (expectedStatus) {
+            case BAD_REQUEST: yield status().isBadRequest();
+            default: yield status().isOk();
+        };
 
         MvcResult result = mockMvc.perform(post(BASE_URL)
                         .content(jsonRequest)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk())
+                .andExpect(matcher)
                 .andReturn();
 
 

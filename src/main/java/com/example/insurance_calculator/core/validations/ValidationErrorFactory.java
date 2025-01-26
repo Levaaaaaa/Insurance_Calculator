@@ -17,7 +17,14 @@ public class ValidationErrorFactory {
         return new ValidationErrorDTO(errorCode, util.getErrorDescription(errorCode));
     }
 
-    public ValidationErrorDTO buildError(String errorCode, List<Placeholder> placeholders) {
-        return new ValidationErrorDTO(errorCode, util.getErrorDescription(errorCode, placeholders));
+    public List<ValidationErrorDTO> buildError(String errorCode, List<Placeholder> placeholders) {
+        return placeholders.stream().map(
+                placeholder ->
+                        buildError(errorCode, placeholder)
+        ).toList();
+    }
+
+    public ValidationErrorDTO buildError(String errorCode, Placeholder placeholder) {
+        return new ValidationErrorDTO(errorCode, util.getErrorDescription(errorCode, placeholder));
     }
 }

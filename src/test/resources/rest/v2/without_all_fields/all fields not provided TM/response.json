@@ -1,6 +1,4 @@
-{
-  "errors": [
-    {
+[{
       "errorCode": "ERROR_CODE_2",
       "description": "Field agreementDateFrom must not be empty!"
     },
@@ -44,5 +42,4 @@
       "errorCode": "ERROR_CODE_13",
       "description": "Field medicalRiskLimitLevel must not be empty!"
     }
-  ]
-}
+]

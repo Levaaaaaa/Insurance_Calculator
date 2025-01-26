@@ -4,7 +4,7 @@ import com.example.insurance_calculator.core.api.command.get.GetResultStatus;
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreCommand;
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreResult;
 import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
-import com.example.insurance_calculator.core.domain.agreement.AgreementEntityDomain;
+import com.example.insurance_calculator.core.entities.agreement.AgreementEntity;
 import com.example.insurance_calculator.core.repositories.get.GetAgreementRepository;
 import com.example.insurance_calculator.core.validations.get.GetCommandUUIDValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class GetAgreementServiceImpl implements GetAgreementService{
 
     private TravelGetAgreementCoreResult buildCorrectResult(String uuid) {
         TravelGetAgreementCoreResult result = new TravelGetAgreementCoreResult();
-        Optional<AgreementEntityDomain> optionalAgreementDomain = getAgreementRepository.findByUuid(UUID.fromString(uuid));
+        Optional<AgreementEntity> optionalAgreementDomain = getAgreementRepository.findByUuid(UUID.fromString(uuid));
         if (optionalAgreementDomain.isEmpty()) {
             result.setStatus(GetResultStatus.NOT_FOUND_UUID);
             return result;

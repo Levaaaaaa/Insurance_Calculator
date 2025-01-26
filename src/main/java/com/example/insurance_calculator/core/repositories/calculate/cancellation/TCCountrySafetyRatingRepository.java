@@ -1,6 +1,6 @@
 package com.example.insurance_calculator.core.repositories.calculate.cancellation;
 
-import com.example.insurance_calculator.core.domain.calculate.cancellation.TCCountrySafetyRatingCoefficientDomain;
+import com.example.insurance_calculator.core.entities.calculate.cancellation.TCCountrySafetyRatingCoefficientDomain;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

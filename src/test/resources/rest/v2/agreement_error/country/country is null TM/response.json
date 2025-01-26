@@ -1,8 +1,6 @@
-{
-  "errors": [
+[
     {
       "errorCode": "ERROR_CODE_10",
       "description": "Field country must not be empty!"
     }
   ]
-}

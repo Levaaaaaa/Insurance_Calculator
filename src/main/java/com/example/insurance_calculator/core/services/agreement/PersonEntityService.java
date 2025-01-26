@@ -1,8 +1,8 @@
 package com.example.insurance_calculator.core.services.agreement;
 
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.domain.agreement.AgreementEntityDomain;
-import com.example.insurance_calculator.core.domain.agreement.PersonDTODomain;
+import com.example.insurance_calculator.core.entities.agreement.AgreementEntity;
+import com.example.insurance_calculator.core.entities.agreement.PersonEntity;
 import com.example.insurance_calculator.core.repositories.agreement.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,8 +16,8 @@ public class PersonEntityService {
     private PersonRepository personRepository;
 
 
-    public PersonDTODomain getPersonEntity(PersonDTO person, AgreementEntityDomain agreement) {
-        Optional<PersonDTODomain> entity = personRepository.findBy(
+    public PersonEntity getPersonEntity(PersonDTO person, AgreementEntity agreement) {
+        Optional<PersonEntity> entity = personRepository.findBy(
                 person.getPersonFirstName(),
                 person.getPersonLastName(),
                 person.getPersonIc()
@@ -25,7 +25,7 @@ public class PersonEntityService {
         if (entity.isPresent()) {
             return entity.get();
         }
-        PersonDTODomain result = new PersonDTODomain();
+        PersonEntity result = new PersonEntity();
         result.setPersonFirstName(person.getPersonFirstName());
         result.setPersonLastName(person.getPersonLastName());
 

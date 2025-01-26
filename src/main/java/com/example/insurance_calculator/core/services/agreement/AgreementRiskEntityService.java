@@ -1,8 +1,8 @@
 package com.example.insurance_calculator.core.services.agreement;
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
-import com.example.insurance_calculator.core.domain.agreement.AgreementEntityDomain;
-import com.example.insurance_calculator.core.domain.agreement.AgreementRiskEntityDomain;
+import com.example.insurance_calculator.core.entities.agreement.AgreementEntity;
+import com.example.insurance_calculator.core.entities.agreement.AgreementWithRiskEntity;
 import com.example.insurance_calculator.core.repositories.agreement.AgreementRiskEntityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,25 +15,25 @@ public class AgreementRiskEntityService {
     @Autowired
     private AgreementRiskEntityRepository agreementRiskEntityRepository;
 
-    public AgreementRiskEntityDomain saveRisk(String riskIc, AgreementEntityDomain agreementDomain) {
-        Optional<AgreementRiskEntityDomain> optional = agreementRiskEntityRepository.findByIcAndAgreement(riskIc, agreementDomain);
+    public AgreementWithRiskEntity saveRisk(String riskIc, AgreementEntity agreementDomain) {
+        Optional<AgreementWithRiskEntity> optional = agreementRiskEntityRepository.findByIcAndAgreement(riskIc, agreementDomain);
         if (optional.isPresent()) {
             return optional.get();
         }
 
-        AgreementRiskEntityDomain domain = new AgreementRiskEntityDomain();
+        AgreementWithRiskEntity domain = new AgreementWithRiskEntity();
         domain.setRiskIc(riskIc);
         domain.setAgreement(agreementDomain);
         agreementRiskEntityRepository.save(domain);
         return domain;
     }
-    public List<AgreementRiskEntityDomain> saveRisks(AgreementDTO agreementDTO, AgreementEntityDomain agreementEntityDomain) {
+    public List<AgreementWithRiskEntity> saveRisks(AgreementDTO agreementDTO, AgreementEntity agreementEntity) {
         return agreementDTO.getSelectedRisks().stream().map(riskIc -> {
-            Optional<AgreementRiskEntityDomain> optional = agreementRiskEntityRepository.findByIcAndAgreement(riskIc, agreementEntityDomain);
+            Optional<AgreementWithRiskEntity> optional = agreementRiskEntityRepository.findByIcAndAgreement(riskIc, agreementEntity);
             if (optional.isEmpty()) {
-                AgreementRiskEntityDomain domain = new AgreementRiskEntityDomain();
+                AgreementWithRiskEntity domain = new AgreementWithRiskEntity();
                 domain.setRiskIc(riskIc);
-                domain.setAgreement(agreementEntityDomain);
+                domain.setAgreement(agreementEntity);
                 agreementRiskEntityRepository.save(domain);
                 return domain;
             }
