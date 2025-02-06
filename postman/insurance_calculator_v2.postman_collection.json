@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "76bdf914-2bdf-45b7-adbc-eb5a70ccb837",
+		"name": "insurance_calculator_v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31258920"
+	},
+	"item": [
+		{
+			"name": "correct request TM",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"agreementDateFrom\" : \"2025-05-25\",\r\n  \"agreementDateTo\" : \"2025-05-29\",\r\n  \"country\" : \"SPAIN\",\r\n\r\n  \"cost\" : 6.00,\r\n  \"selected_risks\":[\"TRAVEL_MEDICAL\"],\r\n  \"persons\" : [\r\n    {\r\n      \"personFirstName\" : \"Vasja\",\r\n      \"personLastName\" : \"Pupkin\",\r\n      \"personIc\" : null,\r\n      \"personBirthDate\" : \"2000-05-29\",\r\n      \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n      \"personPremium\" : null,\r\n      \"selected_risks\" : null\r\n    },\r\n    {\r\n      \"personFirstName\" : \"Petja\",\r\n      \"personLastName\" : \"Pupkin\",\r\n      \"personIc\" : null,\r\n      \"personBirthDate\" : \"1950-02-29\",\r\n      \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n      \"personPremium\" : null,\r\n      \"selected_risks\" : null\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/insurance/travel/api/v2/"
+			},
+			"response": []
+		},
+		{
+			"name": "date from is null",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"agreementDateFrom\" : null,\r\n    \"agreementDateTo\" : \"2025-05-29\",\r\n    \"country\" : \"SPAIN\",\r\n\r\n     \"cost\" : 1.00,\r\n    \"selected_risks\":[\"TRAVEL_MEDICAL\"],\r\n    \"persons\" : [\r\n      {\r\n        \"personFirstName\" : \"Vasja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_0\",\r\n        \"personBirthDate\" : \"2000-05-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      },\r\n      {\r\n        \"personFirstName\" : \"Petja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_1\",\r\n        \"personBirthDate\" : \"1950-02-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      }\r\n    ]\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/insurance/travel/api/v2/"
+			},
+			"response": []
+		},
+		{
+			"name": "test country validation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"agreementDateFrom\" : null,\r\n    \"agreementDateTo\" : \"2025-05-29\",\r\n    \"country\" : \"\",\r\n\r\n     \"cost\" : 1.00,\r\n    \"selected_risks\":[\"TRAVEL_MEDICAL\"],\r\n    \"persons\" : [\r\n      {\r\n        \"personFirstName\" : \"Vasja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_0\",\r\n        \"personBirthDate\" : \"2000-05-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      },\r\n      {\r\n        \"personFirstName\" : \"Petja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_1\",\r\n        \"personBirthDate\" : \"1950-02-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      }\r\n    ]\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/insurance/travel/api/v2/"
+			},
+			"response": []
+		},
+		{
+			"name": "date from after date to",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"agreementDateFrom\" : \"2025-05-29\",\r\n    \"agreementDateTo\" : \"2025-05-25\",\r\n    \"country\" : \"SPAIN\",\r\n\r\n     \"cost\" : 1.00,\r\n    \"selected_risks\":[\"TRAVEL_MEDICAL\"],\r\n    \"persons\" : [\r\n      {\r\n        \"personFirstName\" : \"Vasja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_0\",\r\n        \"personBirthDate\" : \"2000-05-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      },\r\n      {\r\n        \"personFirstName\" : \"Petja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_1\",\r\n        \"personBirthDate\" : \"1950-02-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      }\r\n    ]\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/insurance/travel/api/v2/"
+			},
+			"response": []
+		},
+		{
+			"name": "country is empty TM",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"agreementDateFrom\" : \"2025-05-25\",\r\n    \"agreementDateTo\" : \"2025-05-29\",\r\n    \"country\" : \"\",\r\n    \"cost\" : 1.00,\r\n    \"selected_risks\":[\"TRAVEL_MEDICAL\"],\r\n    \"persons\" : [\r\n      {\r\n        \"personFirstName\" : \"Vasja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_0\",\r\n        \"personBirthDate\" : \"2000-05-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      },\r\n      {\r\n        \"personFirstName\" : \"Petja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_1\",\r\n        \"personBirthDate\" : \"1950-02-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      }\r\n    ]\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/insurance/travel/api/v2/"
+			},
+			"response": []
+		},
+		{
+			"name": "not supported risk",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"agreementDateFrom\" : \"2025-05-25\",\r\n    \"agreementDateTo\" : \"2025-05-29\",\r\n    \"country\" : \"SPAIN\",\r\n\r\n     \"cost\" : 1.00,\r\n    \"selected_risks\":[\"SOME_INVALID_RISK\", \"NOT_SUPPORTED_RISK\"],\r\n    \"persons\" : [\r\n      {\r\n        \"personFirstName\" : \"Vasja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_0\",\r\n        \"personBirthDate\" : \"2000-05-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      },\r\n      {\r\n        \"personFirstName\" : \"Petja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_1\",\r\n        \"personBirthDate\" : \"1950-02-29\",\r\n        \"medicalRiskLimitLevel\" : \"LEVEL_10000\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      }\r\n    ]\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/insurance/travel/api/v2/"
+			},
+			"response": []
+		},
+		{
+			"name": "not supported 2 placeholder values",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n  {\r\n    \"agreementDateFrom\" : \"2025-05-25\",\r\n    \"agreementDateTo\" : \"2025-05-29\",\r\n    \"country\" : \"SPAIN\",\r\n\r\n     \"cost\" : 1.00,\r\n    \"selected_risks\":[\"TRAVEL_MEDICAL\"],\r\n    \"persons\" : [\r\n      {\r\n        \"personFirstName\" : \"Vasja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_0\",\r\n        \"personBirthDate\" : \"2000-05-29\",\r\n        \"medicalRiskLimitLevel\" : \"MY_COEFFICIENT_1\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      },\r\n      {\r\n        \"personFirstName\" : \"Petja\",\r\n        \"personLastName\" : \"Pupkin\",\r\n        \"personIc\" : \"PERSON_0\",\r\n        \"personBirthDate\" : \"1950-02-29\",\r\n        \"medicalRiskLimitLevel\" : \"MY_COEFFICIENT_2\",\r\n        \"personPremium\" : null,\r\n        \"selected_risks\" : null\r\n      }\r\n    ]\r\n  }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:8080/insurance/travel/api/v2/"
+			},
+			"response": []
+		}
+	]
+}
