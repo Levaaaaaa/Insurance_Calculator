@@ -28,7 +28,7 @@ public class PersonEntity {
     @Column(name = "last_name", nullable = false)
     private String personLastName;
 
-    @Column(name = "ic", nullable = false, unique = true)
+    @Column(name = "ic", columnDefinition = "BINARY(16)", nullable = false, unique = true)
     private UUID personIc;
 
     @Column(name = "birth_date", nullable = false)
