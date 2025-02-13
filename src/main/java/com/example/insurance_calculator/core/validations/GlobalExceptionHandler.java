@@ -2,18 +2,20 @@ package com.example.insurance_calculator.core.validations;
 
 import com.example.insurance_calculator.core.api.command.calculate.TravelCalculatePremiumCoreResult;
 import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumRequestV2;
+import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumResponseV2;
 import com.example.insurance_calculator.core.util.Placeholder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
-@RestControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler {
 
     @Autowired
@@ -33,9 +35,26 @@ public class GlobalExceptionHandler {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @ExceptionHandler(value = MethodArgumentNotValidException.class, produces = MediaType.TEXT_HTML_VALUE)
+    //@RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
+    public String handleValidationExceptionMvc(MethodArgumentNotValidException e, Model model) {
+        HashMap<String, ValidationErrorDTO> errors = new HashMap<>();
+        e.getBindingResult().getFieldErrors().forEach(err -> {
+            errors.put(err.getField(), errorFactory.buildError(err.getDefaultMessage()));
+        });
+
+        model.addAttribute("request", new TravelCalculatePremiumRequestV2());
+        model.addAttribute("response", new TravelCalculatePremiumResponseV2());
+        model.addAttribute("validationErrors", errors);
+        return "travel-calculate-premium-v2";
+
+    }
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ValidationErrorDTO> handleValidationException(MethodArgumentNotValidException e, WebRequest request) throws JsonProcessingException {
+    @ExceptionHandler(value = MethodArgumentNotValidException.class, produces = MediaType.APPLICATION_JSON_VALUE)
+    //@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<ValidationErrorDTO> handleValidationExceptionRest(MethodArgumentNotValidException e, WebRequest request) throws JsonProcessingException {
         List<Placeholder> placeholders = e.getBindingResult().getFieldErrors().stream()
                 .filter(error -> error.getRejectedValue() != null)
                 .map(error ->

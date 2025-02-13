@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.rest.common;
+package com.example.insurance_calculator.controllers.rest.common;
 
 import com.google.common.base.Stopwatch;
 import org.slf4j.Logger;

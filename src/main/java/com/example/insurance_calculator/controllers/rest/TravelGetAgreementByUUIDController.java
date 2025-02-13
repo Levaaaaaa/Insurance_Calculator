@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.rest;
+package com.example.insurance_calculator.controllers.rest;
 
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreCommand;
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreResult;

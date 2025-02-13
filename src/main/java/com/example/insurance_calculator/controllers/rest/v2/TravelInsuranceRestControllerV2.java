@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.rest.v2;
+package com.example.insurance_calculator.controllers.rest.v2;
 
 import com.example.insurance_calculator.core.api.command.calculate.TravelCalculatePremiumCoreCommand;
 import com.example.insurance_calculator.core.api.command.calculate.TravelCalculatePremiumCoreResult;
@@ -6,11 +6,10 @@ import com.example.insurance_calculator.core.api.dto.v2.ConverterV2DTO;
 import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumRequestV2;
 import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumResponseV2;
 import com.example.insurance_calculator.core.services.calculate.TravelCalculatePremiumService;
-import com.example.insurance_calculator.rest.common.TravelCalculatePremiumRequestExecutionTimeLogger;
+import com.example.insurance_calculator.controllers.rest.common.TravelCalculatePremiumRequestExecutionTimeLogger;
 import com.google.common.base.Stopwatch;
 
 import jakarta.validation.Valid;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

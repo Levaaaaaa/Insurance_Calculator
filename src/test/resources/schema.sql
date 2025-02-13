@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS persons (
     id BIGINT NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(200) NOT NULL,
     last_name VARCHAR(200) NOT NULL,
-    ic UUID NOT NULL UNIQUE,
+    ic BINARY(16) NOT NULL UNIQUE,
     birth_date DATE NOT NULL,
     PRIMARY KEY(id)
 );
@@ -67,7 +67,7 @@ ON persons (first_name, last_name, ic);
 
 CREATE TABLE IF NOT EXISTS agreements (
     id BIGINT NOT NULL AUTO_INCREMENT,
-    uuid UUID NOT NULL UNIQUE,
+    uuid BINARY(16) NOT NULL UNIQUE,
     date_from DATE not null,
     date_to DATE not null,
     country VARCHAR(30) not null,
