@@ -2,6 +2,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.4.1'
 	id 'io.spring.dependency-management' version '1.1.7'
+	id 'com.palantir.docker' version '0.35.0'  // Плагин для работы с Docker
+
 }
 
 group = 'com.example'
@@ -12,6 +14,63 @@ java {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
+
+// Определяем путь к скомпилированному JAR
+def jarFile = tasks.named("bootJar").map { it.archiveFile.get().asFile.name }.get()
+
+dockerPrepare {
+	dependsOn("bootJar")
+}
+docker {
+	name = "insurance-calculator:latest"
+	files("build/libs/${jarFile}", ".env") // Указываем верный путь
+	buildArgs(["JAR_FILE": jarFile])
+}
+
+tasks.register("dockerBuild") {
+	dependsOn("bootJar") // Сначала собираем JAR
+	dependsOn("docker")  // Затем создаем Docker-образ
+}
+
+tasks.register("createDockerNetwork") {
+	doLast {
+		exec {
+			commandLine "docker", "network", "create", "insurance-network"
+			ignoreExitValue=true
+		}
+	}
+}
+tasks.register("startMySQLContainer") {
+	dependsOn("createDockerNetwork")
+	doLast {
+		exec {
+			commandLine "docker", "run", "-d", "--name", "mysql", "--network", "insurance-network", "--env-file", "db.env", "-p", "3306:3306", "mysql:latest"
+		}
+	}
+}
+
+tasks.register("startServiceContainer") {
+	//dependsOn("startMySQLContainer")
+	dependsOn("dockerBuild")
+	dependsOn("createDockerNetwork")
+	doLast {
+		exec {
+			commandLine "docker", "run", "-d", "--env-file", ".env", "--network", "insurance-network", "--name", "insurance-service", "-p", "8080:8080", "insurance-calculator:latest"
+		}
+	}
+}
+
+tasks.register("stopContainers") {
+	doLast {
+		exec {
+			commandLine "docker", "stop", "insurance-service", "mysql-db"
+		}
+		exec {
+			commandLine "docker", "rm", "insurance-service", "mysql-db"
+		}
+	}
+}
+
 
 configurations {
 	compileOnly {
