@@ -6,6 +6,7 @@ import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.core.api.dto.RiskDTO;
 import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.messagebroker.ProposalGeneratorQueueSender;
 import com.example.insurance_calculator.core.underwriting.TravelPremiumCalculationResult;
 import com.example.insurance_calculator.core.underwriting.TravelUnderwriting;
 import com.example.insurance_calculator.core.util.AgreementSaveUtil;
@@ -25,6 +26,9 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
 
     @Autowired
     private AgreementSaveUtil agreementSaveUtil;
+
+    @Autowired
+    private ProposalGeneratorQueueSender queueSender;
 
 
     @Override
@@ -50,6 +54,9 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
         agreement.setAgreementPremium(totalPremium);
         agreementSaveUtil.saveAgreement(agreement);
         result.setAgreement(agreement);
+
+        queueSender.send(agreement);
+
         return result;
     }
 

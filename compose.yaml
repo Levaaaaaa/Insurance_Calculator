@@ -4,6 +4,7 @@ services:
       mysql:
           condition: service_healthy
       message-broker:
+        condition: service_started
     restart: always
     build: .
     env_file:
