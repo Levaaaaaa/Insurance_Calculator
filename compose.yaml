@@ -2,7 +2,8 @@ services:
   calculator-service:
     depends_on:
       mysql:
-        condition: service_healthy
+          condition: service_healthy
+      message-broker:
     restart: always
     build: .
     env_file:
@@ -13,7 +14,7 @@ services:
       - DATABASE_URL=${DATABASE_URL}
       - DATABASE_USERNAME=${DATABASE_USERNAME}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILE_ACTIVE}
+      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
 
   mysql:
     image: 'mysql:latest'
@@ -29,3 +30,11 @@ services:
       interval: 10s
       retries: 5
       start_period: 10s
+
+  message-broker:
+    #networks: insurance-calculator-network
+    container_name: rabbitmq-container
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
