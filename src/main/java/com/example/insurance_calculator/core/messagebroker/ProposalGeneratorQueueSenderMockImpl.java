@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-@Profile({"docker", "local" ,"test"})
+@Profile({"local" ,"test"})
 @Component
 public class ProposalGeneratorQueueSenderMockImpl implements ProposalGeneratorQueueSender{
     private static final Logger logger = LoggerFactory.getLogger(ProposalGeneratorQueueSenderMockImpl.class);
