@@ -1,1 +1,9 @@
-rootProject.name = 'insurance-calculator'
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+rootProject.name = 'main-calculator'
+include("insurance-calculator-app")
+include("doc-generator-app")

@@ -6,19 +6,19 @@ services:
       message-broker:
         condition: service_started
     restart: always
-    build: .
+    build: ./insurance-calculator-app
     env_file:
-      - .env
+      - ./insurance-calculator-app/.env
     ports:
       - "8080:8080"
-    environment:
-      - DATABASE_URL=${DATABASE_URL}
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
-      - SPRING_RABBITMQ_HOST=${SPRING_RABBITMQ_HOST}
-      - SPRING_RABBITMQ_USERNAME=${SPRING_RABBITMQ_USERNAME}
-      - SPRING_RABBITMQ_PASSWORD=${SPRING_RABBITMQ_PASSWORD}
+#    environment:
+#      - DATABASE_URL=${DATABASE_URL}
+#      - DATABASE_USERNAME=${DATABASE_USERNAME}
+#      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+#      - SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE}
+#      - SPRING_RABBITMQ_HOST=${SPRING_RABBITMQ_HOST}
+#      - SPRING_RABBITMQ_USERNAME=${SPRING_RABBITMQ_USERNAME}
+#      - SPRING_RABBITMQ_PASSWORD=${SPRING_RABBITMQ_PASSWORD}
 
   mysql:
     image: 'mysql:latest'
@@ -35,6 +35,22 @@ services:
       retries: 5
       start_period: 10s
 
+  doc-generator-service:
+    depends_on:
+      message-broker:
+        condition: service_started
+    build: ./doc-generator-app
+    container_name: doc-generator-container
+    restart: always
+    ports:
+      - "8081:8080"
+    env_file:
+      - ./doc-generator-app/doc-gen.env
+    environment:
+      - SPRING_RABBITMQ_HOST=${SPRING_RABBITMQ_HOST}
+      - SPRING_RABBITMQ_USERNAME=${SPRING_RABBITMQ_USERNAME}
+      - SPRING_RABBITMQ_PASSWORD=${SPRING_RABBITMQ_PASSWORD}
+
   message-broker:
     #networks: insurance-calculator-network
     container_name: rabbitmq-container
@@ -42,3 +58,8 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5672"]
+      interval: 10s
+      retries: 5
+      start_period: 10s

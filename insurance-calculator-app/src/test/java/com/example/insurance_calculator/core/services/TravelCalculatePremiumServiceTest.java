@@ -6,6 +6,7 @@ import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.core.api.dto.RiskDTO;
 import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.messagebroker.ProposalGeneratorQueueSender;
 import com.example.insurance_calculator.core.services.calculate.TravelCalculatePremiumServiceImpl;
 import com.example.insurance_calculator.core.underwriting.TravelPremiumCalculationResult;
 import com.example.insurance_calculator.core.underwriting.TravelUnderwriting;
@@ -29,6 +30,9 @@ public class TravelCalculatePremiumServiceTest {
 
     @Mock
     private TravelUnderwriting underwriting;
+
+    @Mock
+    private ProposalGeneratorQueueSender mockMessageSender;
 
     @Mock
     private AgreementSaveUtil agreementSaveUtil;
