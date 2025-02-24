@@ -46,10 +46,10 @@ services:
       - "8081:8080"
     env_file:
       - ./doc-generator-app/doc-gen.env
-    environment:
-      - SPRING_RABBITMQ_HOST=${SPRING_RABBITMQ_HOST}
-      - SPRING_RABBITMQ_USERNAME=${SPRING_RABBITMQ_USERNAME}
-      - SPRING_RABBITMQ_PASSWORD=${SPRING_RABBITMQ_PASSWORD}
+#    environment:
+#      - SPRING_RABBITMQ_HOST=${SPRING_RABBITMQ_HOST}
+#      - SPRING_RABBITMQ_USERNAME=${SPRING_RABBITMQ_USERNAME}
+#      - SPRING_RABBITMQ_PASSWORD=${SPRING_RABBITMQ_PASSWORD}
 
   message-broker:
     #networks: insurance-calculator-network
