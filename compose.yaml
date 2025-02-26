@@ -1,3 +1,6 @@
+volumes:
+  mysql-volume:
+
 services:
   calculator-service:
     depends_on:
@@ -29,6 +32,8 @@ services:
       - 'MYSQL_ROOT_PASSWORD=root'
     ports:
       - "3306:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
     healthcheck: # Проверяем, что MySQL запущен и слушает соединения
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
@@ -46,6 +51,8 @@ services:
       - "8081:8080"
     env_file:
       - ./doc-generator-app/doc-gen.env
+    volumes:
+      - ./doc-generator-app/docs/proposals:/app/docs/proposals
 #    environment:
 #      - SPRING_RABBITMQ_HOST=${SPRING_RABBITMQ_HOST}
 #      - SPRING_RABBITMQ_USERNAME=${SPRING_RABBITMQ_USERNAME}
