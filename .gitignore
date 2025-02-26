@@ -39,3 +39,4 @@ out/
 *.env
 */logs/
 logs/
+*/docs/
