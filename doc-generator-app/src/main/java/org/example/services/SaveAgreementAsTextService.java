@@ -20,12 +20,15 @@ public class SaveAgreementAsTextService implements DocGeneratorService{
     private String path;
 
     @Override
-    public void generateDocument(AgreementDTO agreementDTO) throws IOException{
-        Path file = Path.of(String.format("%s/agreement-proposal-%s.txt", path, agreementDTO.getUuid().toString()));
+    public void saveDocumentIntoFile(AgreementDTO agreementDTO) throws IOException{
+        Path pathToFile = Path.of(path + "/", buildFileName(agreementDTO));
         ObjectMapper objectMapper = new ObjectMapper();
-        //Files.write(file, objectMapper.writeValueAsString(agreementDTO).getBytes(), StandardOpenOption.CREATE);
-        try (FileWriter fileWriter = new FileWriter(file.toFile())) {
+        try (FileWriter fileWriter = new FileWriter(pathToFile.toFile())) {
             fileWriter.write(objectMapper.writeValueAsString(agreementDTO));
         }
+    }
+
+    private String buildFileName(AgreementDTO agreementDTO) {
+        return String.format("agreement-proposal-%s.txt", agreementDTO.getUuid().toString());
     }
 }

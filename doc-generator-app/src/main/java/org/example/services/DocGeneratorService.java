@@ -7,5 +7,5 @@ import java.io.IOException;
 
 @Service
 public interface DocGeneratorService {
-    public void generateDocument(AgreementDTO agreementDTO) throws IOException;
+    public void saveDocumentIntoFile(AgreementDTO agreementDTO) throws IOException;
 }
