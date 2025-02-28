@@ -5,5 +5,5 @@ pluginManagement {
     }
 }
 rootProject.name = 'main-calculator'
-include("insurance-calculator-app")
-include("doc-generator-app")
+include 'insurance-calculator-app'
+include 'doc-generator-app'

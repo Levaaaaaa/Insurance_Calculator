@@ -1,7 +1,5 @@
 package org.example.messagebroker;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.dto.AgreementDTO;
 import org.example.services.DocGeneratorService;
 import org.slf4j.Logger;
@@ -15,13 +13,13 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import static org.example.messagebroker.RabbitMQConfig.DLQ_NAME;
-import static org.example.messagebroker.RabbitMQConfig.QUEUE_NAME;
-import static org.example.util.AgreementJsonConverter.jsonToAgreement;
+import static org.example.messagebroker.RabbitMQConfig.Q_PROPOSAL_GENERATION_DLQ;
+import static org.example.messagebroker.RabbitMQConfig.Q_PROPOSAL_GENERATION;
+import static org.example.util.DTOJsonConverter.jsonToAgreement;
 
 @Component
-public class QueueListener {
-    private static final Logger logger = LoggerFactory.getLogger(QueueListener.class);
+public class QueueProposalGenerationListener {
+    private static final Logger logger = LoggerFactory.getLogger(QueueProposalGenerationListener.class);
 
     @Value("${rabbitmq.total.retry.count}")
     private Integer totalRetryCount;
@@ -32,7 +30,7 @@ public class QueueListener {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @RabbitListener(queues = QUEUE_NAME)
+    @RabbitListener(queues = Q_PROPOSAL_GENERATION)
     public void receiveMessage(Message message) throws IOException {
         try {
             processMessage(message);
@@ -58,10 +56,10 @@ public class QueueListener {
         retryCount++;
         if (retryCount <= totalRetryCount) {
             message.getMessageProperties().setHeader("x-retry-count", retryCount);
-            rabbitTemplate.convertAndSend(QUEUE_NAME, message);
+            rabbitTemplate.convertAndSend(Q_PROPOSAL_GENERATION, message);
         }
         else {
-            rabbitTemplate.convertAndSend(DLQ_NAME, message);
+            rabbitTemplate.convertAndSend(Q_PROPOSAL_GENERATION_DLQ, message);
         }
     }
     private void saveAgreement(AgreementDTO agreementDTO) throws IOException{

@@ -1,6 +1,5 @@
 package org.example.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.dto.AgreementDTO;
 import org.example.enums.FILE_TYPE;
 import org.example.services.build_filename.BuildFilePathService;
@@ -9,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static org.example.util.AgreementJsonConverter.jsonFromAgreement;
+import static org.example.util.DTOJsonConverter.jsonFromAgreement;
 
 //@Service
 public class SaveAgreementAsTextService implements DocGeneratorService{
