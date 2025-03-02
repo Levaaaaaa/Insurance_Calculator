@@ -1,6 +1,7 @@
 package com.example.insurance_calculator.core.repositories.agreement;
 
-import com.example.insurance_calculator.core.entities.agreement.AgreementEntity;
+import com.example.insurance_calculator.persistence.entities.agreement.AgreementEntity;
+import com.example.insurance_calculator.persistence.repositories.agreement.AgreementEntityRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

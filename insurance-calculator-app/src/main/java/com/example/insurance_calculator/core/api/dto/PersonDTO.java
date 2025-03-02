@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.example.insurance_calculator.core.TE_PERSON_MEDICAL_STATUS;
+import com.example.insurance_calculator.enums.TE_PERSON_MEDICAL_STATUS;
 import com.example.insurance_calculator.core.api.dto.util.BigDecimalSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 

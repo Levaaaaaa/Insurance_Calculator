@@ -2,8 +2,8 @@ package com.example.insurance_calculator.core.underwriting.calculators.evacuatio
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.entities.calculate.evacuation.TEMedicalCoefficientDomain;
-import com.example.insurance_calculator.core.repositories.calculate.evacuation.TEMedicalCoefficientRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.evacuation.TEMedicalCoefficientDomain;
+import com.example.insurance_calculator.persistence.repositories.calculate.evacuation.TEMedicalCoefficientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

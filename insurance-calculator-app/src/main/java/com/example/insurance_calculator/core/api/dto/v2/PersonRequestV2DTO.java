@@ -1,8 +1,8 @@
 package com.example.insurance_calculator.core.api.dto.v2;
 
-import com.example.insurance_calculator.core.MEDICAL_RISK_LIMIT_LEVEL;
-import com.example.insurance_calculator.core.RISKS;
-import com.example.insurance_calculator.core.TE_PERSON_MEDICAL_STATUS;
+import com.example.insurance_calculator.enums.MEDICAL_RISK_LIMIT_LEVEL;
+import com.example.insurance_calculator.enums.RISKS;
+import com.example.insurance_calculator.enums.TE_PERSON_MEDICAL_STATUS;
 import com.example.insurance_calculator.core.validations.custom_valid_annotations.MedicalStatus;
 import com.example.insurance_calculator.core.validations.custom_valid_annotations.ValidEnum;
 import com.fasterxml.jackson.annotation.JsonAlias;
@@ -14,7 +14,6 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 

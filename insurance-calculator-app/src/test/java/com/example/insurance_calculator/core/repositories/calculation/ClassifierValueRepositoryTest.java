@@ -1,7 +1,7 @@
 package com.example.insurance_calculator.core.repositories.calculation;
 
-import com.example.insurance_calculator.core.entities.calculate.ClassifierValue;
-import com.example.insurance_calculator.core.repositories.calculate.ClassifierValueRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.ClassifierValue;
+import com.example.insurance_calculator.persistence.repositories.calculate.ClassifierValueRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

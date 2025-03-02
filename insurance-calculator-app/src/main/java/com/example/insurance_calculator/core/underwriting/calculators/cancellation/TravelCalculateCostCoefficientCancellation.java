@@ -2,7 +2,7 @@ package com.example.insurance_calculator.core.underwriting.calculators.cancellat
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.repositories.calculate.cancellation.TravelCostCoefficientRepository;
+import com.example.insurance_calculator.persistence.repositories.calculate.cancellation.TravelCostCoefficientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

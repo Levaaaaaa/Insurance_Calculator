@@ -79,10 +79,15 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.rabbitmq/amqp-client
 	implementation 'com.rabbitmq:amqp-client:5.25.0'
 
-
-
-
 	compileOnly('org.projectlombok:lombok:1.18.30')
+	// https://mvnrepository.com/artifact/org.mapstruct/mapstruct
+	compileOnly 'org.mapstruct:mapstruct:1.6.3'
+
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.1.0'
+	// https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+
 	annotationProcessor('org.projectlombok:lombok:1.18.30')
 
 	testCompileOnly('org.projectlombok:lombok:1.18.30')

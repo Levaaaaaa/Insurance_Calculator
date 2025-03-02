@@ -1,7 +1,7 @@
 package com.example.insurance_calculator.core.repositories.calculation.medical;
 
-import com.example.insurance_calculator.core.entities.calculate.medical.CountryDefaultDayRate;
-import com.example.insurance_calculator.core.repositories.calculate.medical.CountryDefaultDayRateRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.medical.CountryDefaultDayRate;
+import com.example.insurance_calculator.persistence.repositories.calculate.medical.CountryDefaultDayRateRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

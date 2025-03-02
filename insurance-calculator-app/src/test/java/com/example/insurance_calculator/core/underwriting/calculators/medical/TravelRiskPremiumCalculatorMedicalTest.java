@@ -2,9 +2,9 @@ package com.example.insurance_calculator.core.underwriting.calculators.medical;
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.entities.calculate.medical.TMAgeCoefficient;
-import com.example.insurance_calculator.core.entities.calculate.medical.CountryDefaultDayRate;
-import com.example.insurance_calculator.core.entities.calculate.medical.MedicalRiskLimitLevel;
+import com.example.insurance_calculator.persistence.entities.calculate.medical.TMAgeCoefficient;
+import com.example.insurance_calculator.persistence.entities.calculate.medical.CountryDefaultDayRate;
+import com.example.insurance_calculator.persistence.entities.calculate.medical.MedicalRiskLimitLevel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -20,8 +20,8 @@ import java.util.List;
 
 import static com.example.insurance_calculator.core.api.dto.AgreementDTOBuilder.createAgreementDTO;
 import static com.example.insurance_calculator.core.api.dto.PersonDTOBuilder.createPersonDTO;
-import static com.example.insurance_calculator.core.entities.calculate.builders.CountryDefaultDayRateBuilder.createCountryDefaultDayRate;
-import static com.example.insurance_calculator.core.entities.calculate.builders.MedicalRiskLimitLevelBuilder.createMedicalRiskLimitLevel;
+import static com.example.insurance_calculator.persistence.entities.calculate.builders.CountryDefaultDayRateBuilder.createCountryDefaultDayRate;
+import static com.example.insurance_calculator.persistence.entities.calculate.builders.MedicalRiskLimitLevelBuilder.createMedicalRiskLimitLevel;
 import static com.example.insurance_calculator.CreateDateUtil.createDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;

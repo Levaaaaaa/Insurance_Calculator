@@ -2,8 +2,8 @@ package com.example.insurance_calculator.core.underwriting.calculators.medical;
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.entities.calculate.medical.MedicalRiskLimitLevel;
-import com.example.insurance_calculator.core.repositories.calculate.medical.MedicalRiskLimitLevelRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.medical.MedicalRiskLimitLevel;
+import com.example.insurance_calculator.persistence.repositories.calculate.medical.MedicalRiskLimitLevelRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 import static com.example.insurance_calculator.core.api.dto.AgreementDTOBuilder.createAgreementDTO;
 import static com.example.insurance_calculator.core.api.dto.PersonDTOBuilder.createPersonDTO;
-import static com.example.insurance_calculator.core.entities.calculate.builders.MedicalRiskLimitLevelBuilder.createMedicalRiskLimitLevel;
+import static com.example.insurance_calculator.persistence.entities.calculate.builders.MedicalRiskLimitLevelBuilder.createMedicalRiskLimitLevel;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

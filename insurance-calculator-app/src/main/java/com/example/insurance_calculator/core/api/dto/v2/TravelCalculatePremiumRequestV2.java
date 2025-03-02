@@ -1,7 +1,7 @@
 package com.example.insurance_calculator.core.api.dto.v2;
 
-import com.example.insurance_calculator.core.COUNTRY;
-import com.example.insurance_calculator.core.RISKS;
+import com.example.insurance_calculator.enums.COUNTRY;
+import com.example.insurance_calculator.enums.RISKS;
 import com.example.insurance_calculator.core.validations.custom_valid_annotations.DateToAfterDateFrom;
 import com.example.insurance_calculator.core.validations.custom_valid_annotations.ValidEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;

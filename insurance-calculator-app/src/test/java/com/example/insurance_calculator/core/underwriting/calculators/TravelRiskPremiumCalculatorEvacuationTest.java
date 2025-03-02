@@ -1,12 +1,11 @@
 package com.example.insurance_calculator.core.underwriting.calculators;
 
-import com.example.insurance_calculator.core.TE_PERSON_MEDICAL_STATUS;
+import com.example.insurance_calculator.enums.TE_PERSON_MEDICAL_STATUS;
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.core.underwriting.calculators.evacuation.TEAgeCoefficientCalculator;
 import com.example.insurance_calculator.core.underwriting.calculators.evacuation.TEMedicalCoefficientCalculator;
 import com.example.insurance_calculator.core.underwriting.calculators.evacuation.TEPremiumCalculatorComponent;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

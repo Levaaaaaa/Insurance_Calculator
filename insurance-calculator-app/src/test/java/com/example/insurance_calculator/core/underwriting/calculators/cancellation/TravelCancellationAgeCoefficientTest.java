@@ -3,8 +3,8 @@ package com.example.insurance_calculator.core.underwriting.calculators.cancellat
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTOBuilder;
-import com.example.insurance_calculator.core.entities.calculate.cancellation.TCAgeCoefficientDomain;
-import com.example.insurance_calculator.core.repositories.calculate.cancellation.TCAgeCoefficientRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.cancellation.TCAgeCoefficientDomain;
+import com.example.insurance_calculator.persistence.repositories.calculate.cancellation.TCAgeCoefficientRepository;
 import com.example.insurance_calculator.core.util.CalculateAgeUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;

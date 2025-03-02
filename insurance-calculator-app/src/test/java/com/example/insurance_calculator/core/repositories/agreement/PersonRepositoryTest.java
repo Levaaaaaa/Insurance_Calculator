@@ -1,14 +1,14 @@
 package com.example.insurance_calculator.core.repositories.agreement;
 
 
-import com.example.insurance_calculator.core.entities.agreement.PersonEntity;
+import com.example.insurance_calculator.persistence.entities.agreement.PersonEntity;
+import com.example.insurance_calculator.persistence.repositories.agreement.PersonRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.sql.Date;
 import java.util.Optional;
 import java.util.UUID;
 

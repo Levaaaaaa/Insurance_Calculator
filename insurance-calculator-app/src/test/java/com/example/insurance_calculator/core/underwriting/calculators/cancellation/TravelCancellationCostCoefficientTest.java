@@ -3,8 +3,8 @@ package com.example.insurance_calculator.core.underwriting.calculators.cancellat
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.AgreementDTOBuilder;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.entities.calculate.cancellation.TravelCostCoefficientDomain;
-import com.example.insurance_calculator.core.repositories.calculate.cancellation.TravelCostCoefficientRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.cancellation.TravelCostCoefficientDomain;
+import com.example.insurance_calculator.persistence.repositories.calculate.cancellation.TravelCostCoefficientRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

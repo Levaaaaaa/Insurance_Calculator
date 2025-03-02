@@ -1,7 +1,7 @@
 package com.example.insurance_calculator.core.repositories.calculation.evacuation;
 
-import com.example.insurance_calculator.core.entities.calculate.evacuation.TEMedicalCoefficientDomain;
-import com.example.insurance_calculator.core.repositories.calculate.evacuation.TEMedicalCoefficientRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.evacuation.TEMedicalCoefficientDomain;
+import com.example.insurance_calculator.persistence.repositories.calculate.evacuation.TEMedicalCoefficientRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

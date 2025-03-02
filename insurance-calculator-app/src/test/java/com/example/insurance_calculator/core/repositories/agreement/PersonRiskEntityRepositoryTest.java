@@ -1,7 +1,8 @@
 package com.example.insurance_calculator.core.repositories.agreement;
 
-import com.example.insurance_calculator.core.entities.agreement.PersonInAgreementEntity;
-import com.example.insurance_calculator.core.entities.agreement.PersonsRiskEntity;
+import com.example.insurance_calculator.persistence.entities.agreement.PersonInAgreementEntity;
+import com.example.insurance_calculator.persistence.entities.agreement.PersonsRiskEntity;
+import com.example.insurance_calculator.persistence.repositories.agreement.PersonRiskEntityRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.sql.Date;
 import java.util.Optional;
 
 import static org.springframework.test.util.AssertionErrors.*;

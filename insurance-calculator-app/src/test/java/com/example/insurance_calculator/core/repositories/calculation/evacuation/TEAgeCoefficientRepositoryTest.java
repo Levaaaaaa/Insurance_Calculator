@@ -1,8 +1,7 @@
 package com.example.insurance_calculator.core.repositories.calculation.evacuation;
 
-import com.example.insurance_calculator.core.entities.calculate.cancellation.TCAgeCoefficientDomain;
-import com.example.insurance_calculator.core.entities.calculate.evacuation.TEAgeCoefficientDomain;
-import com.example.insurance_calculator.core.repositories.calculate.evacuation.TEAgeCoefficientRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.evacuation.TEAgeCoefficientDomain;
+import com.example.insurance_calculator.persistence.repositories.calculate.evacuation.TEAgeCoefficientRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

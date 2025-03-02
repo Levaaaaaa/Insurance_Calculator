@@ -2,8 +2,8 @@ package com.example.insurance_calculator.core.underwriting.calculators.medical;
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
-import com.example.insurance_calculator.core.entities.calculate.medical.CountryDefaultDayRate;
-import com.example.insurance_calculator.core.repositories.calculate.medical.CountryDefaultDayRateRepository;
+import com.example.insurance_calculator.persistence.entities.calculate.medical.CountryDefaultDayRate;
+import com.example.insurance_calculator.persistence.repositories.calculate.medical.CountryDefaultDayRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
