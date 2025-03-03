@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS insurance_calculator_db;
+CREATE DATABASE IF NOT EXISTS blacklist_db;
