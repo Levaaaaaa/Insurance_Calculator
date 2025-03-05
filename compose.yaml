@@ -43,6 +43,21 @@ services:
       retries: 5
       start_period: 10s
 
+#  black-list-app:
+#    user: root
+#    depends_on:
+#        mysql:
+#          condition: service_started
+#    build: ./black-list-app
+#    container_name: black-list-container
+#    restart: always
+#    ports:
+#      - "8082:8080"
+#    environment:
+#      - DATABASE_URL=jdbc:mysql://mysql:3306/blacklist_db?serverTimezone=Europe/Minsk
+#      - DATABASE_USERNAME=root
+#      - DATABASE_PASSWORD=root
+
   doc-generator-service:
     user: root
     depends_on:
