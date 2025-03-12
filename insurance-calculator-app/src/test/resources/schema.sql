@@ -173,4 +173,11 @@ CREATE TABLE IF NOT EXISTS travel_evacuation_medical_coefficient(
     ic VARCHAR(50) NOT NULL UNIQUE,
     coefficient DECIMAL(10,2) NOT NULL,
     PRIMARY KEY(id)
-)
+);
+
+CREATE TABLE IF NOT EXISTS doc_generating_ack (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    agreement_uuid BINARY(16) NOT NULL,
+    path VARCHAR(260) NOT NULL,
+    PRIMARY KEY(id)
+);

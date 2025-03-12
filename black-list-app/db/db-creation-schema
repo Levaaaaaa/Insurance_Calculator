@@ -1,0 +1,7 @@
+CREATE TABLE black_listed_persons (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    person_uuid BINARY(16) NOT NULL UNIQUE,
+    PRIMARY LEY(id)
+);
