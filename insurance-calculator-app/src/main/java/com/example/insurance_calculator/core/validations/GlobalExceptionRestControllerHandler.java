@@ -1,8 +1,6 @@
 package com.example.insurance_calculator.core.validations;
 
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
-import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumRequestV2;
-import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumResponseV2;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
 import com.example.insurance_calculator.core.util.Placeholder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -10,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +31,7 @@ public class GlobalExceptionRestControllerHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class, produces = MediaType.APPLICATION_JSON_VALUE)
     //@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public List<ValidationErrorDTO> handleValidationExceptionRest(MethodArgumentNotValidException e, WebRequest request) throws JsonProcessingException {
+    public List<ErrorDTO> handleValidationExceptionRest(MethodArgumentNotValidException e, WebRequest request) throws JsonProcessingException {
         List<Placeholder> placeholders = e.getBindingResult().getFieldErrors().stream()
                 .filter(error -> error.getRejectedValue() != null)
                 .map(error ->

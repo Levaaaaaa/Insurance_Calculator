@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
 import com.example.insurance_calculator.core.api.dto.util.BigDecimalSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,7 +24,7 @@ import java.util.UUID;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TravelCalculatePremiumResponseV2 {
 
-    private List<ValidationErrorDTO> errors;
+    private List<ErrorDTO> errors;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")

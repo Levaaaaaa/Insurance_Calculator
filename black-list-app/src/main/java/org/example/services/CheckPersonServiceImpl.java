@@ -24,11 +24,13 @@ public class CheckPersonServiceImpl implements CheckPersonService{
 
     @Override
     public BlackListedPersonDTO checkPerson(BlackListedPersonDTO personDTO) {
-        Optional<BlackListedPersonEntity> entityOptional = repository.findByFirstNameAndLastNameAndPersonCode(
-                personDTO.getFirstName(),
-                personDTO.getLastName(),
-                UUID.fromString(personDTO.getPersonCode())
-        );
+        UUID uuid = UUID.fromString(personDTO.getPersonCode());
+        Optional<BlackListedPersonEntity> entityOptional = repository.findByFirstNameAndLastName(personDTO.getFirstName(), personDTO.getLastName());
+//        Optional<BlackListedPersonEntity> entityOptional = repository.findByFirstNameAndLastNameAndPersonCode(
+//                personDTO.getFirstName(),
+//                personDTO.getLastName(),
+//                uuid
+//        );
 
         personDTO.setBlackListed(entityOptional.isPresent());
         return personDTO;

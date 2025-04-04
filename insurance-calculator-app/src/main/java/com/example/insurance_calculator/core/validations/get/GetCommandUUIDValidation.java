@@ -1,9 +1,9 @@
 package com.example.insurance_calculator.core.validations.get;
 
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
 
 import java.util.Optional;
 
 public interface GetCommandUUIDValidation {
-    public Optional<ValidationErrorDTO> validate(String uuid);
+    public Optional<ErrorDTO> validate(String uuid);
 }

@@ -1,8 +1,8 @@
 package com.example.insurance_calculator.core.util;
 
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
+import com.example.insurance_calculator.core.services.agreement.*;
 import com.example.insurance_calculator.persistence.entities.agreement.*;
-import com.example.insurance_calculator.services.agreement.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

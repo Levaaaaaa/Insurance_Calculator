@@ -1,6 +1,6 @@
 package com.example.insurance_calculator.core.validations;
 
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
 import com.example.insurance_calculator.core.util.ErrorCodeUtil;
 import com.example.insurance_calculator.core.util.Placeholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +13,18 @@ public class ValidationErrorFactory {
     @Autowired
     private ErrorCodeUtil util;
 
-    public ValidationErrorDTO buildError(String errorCode) {
-        return new ValidationErrorDTO(errorCode, util.getErrorDescription(errorCode));
+    public ErrorDTO buildError(String errorCode) {
+        return new ErrorDTO(errorCode, util.getErrorDescription(errorCode));
     }
 
-    public List<ValidationErrorDTO> buildError(String errorCode, List<Placeholder> placeholders) {
+    public List<ErrorDTO> buildError(String errorCode, List<Placeholder> placeholders) {
         return placeholders.stream().map(
                 placeholder ->
                         buildError(errorCode, placeholder)
         ).toList();
     }
 
-    public ValidationErrorDTO buildError(String errorCode, Placeholder placeholder) {
-        return new ValidationErrorDTO(errorCode, util.getErrorDescription(errorCode, placeholder));
+    public ErrorDTO buildError(String errorCode, Placeholder placeholder) {
+        return new ErrorDTO(errorCode, util.getErrorDescription(errorCode, placeholder));
     }
 }

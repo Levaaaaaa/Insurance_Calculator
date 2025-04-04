@@ -5,8 +5,9 @@ import com.example.insurance_calculator.core.api.command.calculate.TravelCalcula
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.core.api.dto.RiskDTO;
+import com.example.insurance_calculator.core.blacklist.service.CheckBlackListedPersonService;
 import com.example.insurance_calculator.messagebroker.ProposalGeneratorQueueSender;
-import com.example.insurance_calculator.services.calculate.TravelCalculatePremiumServiceImpl;
+import com.example.insurance_calculator.core.services.calculate.TravelCalculatePremiumServiceImpl;
 import com.example.insurance_calculator.core.underwriting.TravelPremiumCalculationResult;
 import com.example.insurance_calculator.core.underwriting.TravelUnderwriting;
 import com.example.insurance_calculator.core.util.AgreementSaveUtil;
@@ -35,6 +36,10 @@ public class TravelCalculatePremiumServiceTest {
 
     @Mock
     private AgreementSaveUtil agreementSaveUtil;
+
+    @Mock
+    private CheckBlackListedPersonService blackListedPersonService;
+
     private AgreementDTO agreement = new AgreementDTO();
 
 
@@ -54,7 +59,7 @@ public class TravelCalculatePremiumServiceTest {
         when(risk.getPremium()).thenReturn(riskPremium);
         agreement.setPersons(List.of(person));
         when(underwriting.calculatePremium(agreement, person)).thenReturn(new TravelPremiumCalculationResult(totalPremium, risks));
-
+        when(blackListedPersonService.checkPersons(agreement)).thenReturn(List.of());
         TravelCalculatePremiumCoreResult result = service.calculatePremium(new TravelCalculatePremiumCoreCommand(agreement));
         assertEquals("", totalPremium, result.getAgreement().getAgreementPremium());
         assertEquals("", riskPremium, result.getAgreement().getPersons().get(0).getSelectedRisks().get(0).getPremium());

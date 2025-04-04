@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.services.calculate;
+package com.example.insurance_calculator.core.services.calculate;
 
 import com.example.insurance_calculator.core.api.command.calculate.TravelCalculatePremiumCoreCommand;
 import com.example.insurance_calculator.core.api.command.calculate.TravelCalculatePremiumCoreResult;

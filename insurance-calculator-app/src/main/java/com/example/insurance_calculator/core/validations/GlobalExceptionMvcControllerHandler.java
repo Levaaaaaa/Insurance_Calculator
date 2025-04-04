@@ -1,6 +1,6 @@
 package com.example.insurance_calculator.core.validations;
 
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
 import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumRequestV2;
 import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumResponseV2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class GlobalExceptionMvcControllerHandler {
     @ExceptionHandler(value = MethodArgumentNotValidException.class, produces = MediaType.TEXT_HTML_VALUE)
     //@RequestMapping(produces = MediaType.TEXT_HTML_VALUE)
     public String handleValidationExceptionMvc(MethodArgumentNotValidException e, Model model) {
-        HashMap<String, ValidationErrorDTO> errors = new HashMap<>();
+        HashMap<String, ErrorDTO> errors = new HashMap<>();
         e.getBindingResult().getFieldErrors().forEach(err -> {
             errors.put(err.getField(), errorFactory.buildError(err.getDefaultMessage()));
         });

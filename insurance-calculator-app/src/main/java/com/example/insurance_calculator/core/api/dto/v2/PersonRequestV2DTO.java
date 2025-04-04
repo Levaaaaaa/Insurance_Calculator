@@ -40,6 +40,8 @@ public class PersonRequestV2DTO {
     Date personBirthDate;
 
 //    @NotBlank(message = "ERROR_CODE_16")
+    @NotBlank(message = "ERROR_CODE_16")
+    @Pattern(regexp = "[0-9]{8}-[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{12}", message = "ERROR_CODE_27")
     private String personIc;
 
     @NotBlank(message = "ERROR_CODE_13")

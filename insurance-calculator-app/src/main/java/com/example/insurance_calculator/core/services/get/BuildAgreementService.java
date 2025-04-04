@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.services.get;
+package com.example.insurance_calculator.core.services.get;
 
 import com.example.insurance_calculator.enums.RISKS;
 import com.example.insurance_calculator.enums.TE_PERSON_MEDICAL_STATUS;

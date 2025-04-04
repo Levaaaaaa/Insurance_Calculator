@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.services.agreement;
+package com.example.insurance_calculator.core.services.agreement;
 
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.persistence.entities.agreement.AgreementEntity;
@@ -17,9 +17,7 @@ public class PersonEntityService {
 
 
     public PersonEntity getPersonEntity(PersonDTO person, AgreementEntity agreement) {
-        Optional<PersonEntity> entity = personRepository.findBy(
-                person.getPersonFirstName(),
-                person.getPersonLastName(),
+        Optional<PersonEntity> entity = personRepository.findByPersonIc(
                 person.getPersonIc()
         );
         if (entity.isPresent()) {

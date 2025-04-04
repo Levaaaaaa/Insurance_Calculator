@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.services.ack;
+package com.example.insurance_calculator.core.services.ack;
 
 import com.example.insurance_calculator.core.api.dto.GeneratedAckDTO;
 import org.springframework.stereotype.Service;

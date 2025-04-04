@@ -1,10 +1,12 @@
 package com.example.insurance_calculator.rest.controller_v2_test;
 
 import com.example.insurance_calculator.rest.JsonFileReader;
+import com.github.tomakehurst.wiremock.client.WireMock;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,12 +16,14 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import static com.example.insurance_calculator.rest.RemoveRandomValues.removeRandomValues;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+//import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.org.webcompere.modelassert.json.JsonAssertions.assertJson;
+import static uk.org.webcompere.modelassert.json.JsonAssertions.jsonFile;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
+@AutoConfigureWireMock(port = 8082)
 @AutoConfigureMockMvc
 public abstract class TravelCalculatePremiumControllerV2TestCase {
     @Autowired
@@ -35,12 +39,14 @@ public abstract class TravelCalculatePremiumControllerV2TestCase {
         executeAndCompare(
                 "rest/v2/" + getTestCaseFolderPath() + testCaseFolderName + "/request.json",
                 "rest/v2/" + getTestCaseFolderPath() + testCaseFolderName + "/response.json",
+                "rest/v2/black_listed/response.json",
                 expectedStatus
         );
     }
 
     protected void executeAndCompare(String jsonRequestFilePath,
                                      String jsonResponseFilePath,
+                                     String blackListedResponsePath,
                                      HttpStatus expectedStatus) throws Exception {
         String jsonRequest = jsonFileReader.readJsonFromFile(jsonRequestFilePath);
 
@@ -49,7 +55,15 @@ public abstract class TravelCalculatePremiumControllerV2TestCase {
             default: yield status().isOk();
         };
 
-        MvcResult result = mockMvc.perform(post(BASE_URL)
+        String blackListedResponse = jsonFileReader.readJsonFromFile(blackListedResponsePath);
+        WireMock.stubFor(post(urlEqualTo("/blacklist/person/check")).willReturn(
+                aResponse().withHeader("Content-Type", "application/json")
+                        .withBody(blackListedResponse)
+                        .withStatus(200)
+                        )
+        );
+        MvcResult result = mockMvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+                        .post(BASE_URL)
                         .content(jsonRequest)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(matcher)

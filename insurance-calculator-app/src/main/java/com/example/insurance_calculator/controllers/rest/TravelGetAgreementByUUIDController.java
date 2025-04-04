@@ -2,7 +2,7 @@ package com.example.insurance_calculator.controllers.rest;
 
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreCommand;
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreResult;
-import com.example.insurance_calculator.services.get.GetAgreementService;
+import com.example.insurance_calculator.core.services.get.GetAgreementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -5,7 +5,7 @@ import com.example.insurance_calculator.core.api.dto.PersonDTOBuilder;
 import com.example.insurance_calculator.persistence.entities.agreement.AgreementEntity;
 import com.example.insurance_calculator.persistence.entities.agreement.PersonEntity;
 import com.example.insurance_calculator.persistence.repositories.agreement.PersonRepository;
-import com.example.insurance_calculator.services.agreement.PersonEntityService;
+import com.example.insurance_calculator.core.services.agreement.PersonEntityService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

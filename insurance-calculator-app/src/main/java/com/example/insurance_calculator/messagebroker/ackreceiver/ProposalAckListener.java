@@ -1,7 +1,7 @@
 package com.example.insurance_calculator.messagebroker.ackreceiver;
 
 import com.example.insurance_calculator.core.api.dto.GeneratedAckDTO;
-import com.example.insurance_calculator.services.ack.SaveDocGeneratorAckService;
+import com.example.insurance_calculator.core.services.ack.SaveDocGeneratorAckService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

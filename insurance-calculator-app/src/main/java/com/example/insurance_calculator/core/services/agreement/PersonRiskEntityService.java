@@ -1,4 +1,4 @@
-package com.example.insurance_calculator.services.agreement;
+package com.example.insurance_calculator.core.services.agreement;
 
 import com.example.insurance_calculator.core.api.dto.RiskDTO;
 import com.example.insurance_calculator.persistence.entities.agreement.PersonInAgreementEntity;

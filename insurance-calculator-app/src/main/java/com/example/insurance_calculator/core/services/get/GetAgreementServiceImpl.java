@@ -1,9 +1,9 @@
-package com.example.insurance_calculator.services.get;
+package com.example.insurance_calculator.core.services.get;
 
 import com.example.insurance_calculator.core.api.command.get.GetResultStatus;
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreCommand;
 import com.example.insurance_calculator.core.api.command.get.TravelGetAgreementCoreResult;
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
 import com.example.insurance_calculator.persistence.entities.agreement.AgreementEntity;
 import com.example.insurance_calculator.persistence.repositories.get.GetAgreementRepository;
 import com.example.insurance_calculator.core.validations.get.GetCommandUUIDValidator;
@@ -28,13 +28,13 @@ public class GetAgreementServiceImpl implements GetAgreementService{
 
     @Override
     public TravelGetAgreementCoreResult getAgreement(TravelGetAgreementCoreCommand command) {
-        List<ValidationErrorDTO> errors = validator.validate(command.getUuid());
+        List<ErrorDTO> errors = validator.validate(command.getUuid());
         return errors.isEmpty()
                 ? buildCorrectResult(command.getUuid())
                 : buildResultWithErrors(errors);
     }
 
-    private TravelGetAgreementCoreResult buildResultWithErrors(List<ValidationErrorDTO> errors) {
+    private TravelGetAgreementCoreResult buildResultWithErrors(List<ErrorDTO> errors) {
         TravelGetAgreementCoreResult result = new TravelGetAgreementCoreResult();
         result.setStatus(GetResultStatus.COMPLETED_WITH_ERRORS);
         result.setErrors(errors);

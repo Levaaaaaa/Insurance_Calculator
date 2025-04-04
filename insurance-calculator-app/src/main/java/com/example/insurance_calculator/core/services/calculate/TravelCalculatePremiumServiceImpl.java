@@ -1,11 +1,12 @@
-package com.example.insurance_calculator.services.calculate;
+package com.example.insurance_calculator.core.services.calculate;
 
 import com.example.insurance_calculator.core.api.command.calculate.TravelCalculatePremiumCoreCommand;
 import com.example.insurance_calculator.core.api.command.calculate.TravelCalculatePremiumCoreResult;
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
 import com.example.insurance_calculator.core.api.dto.PersonDTO;
 import com.example.insurance_calculator.core.api.dto.RiskDTO;
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
+import com.example.insurance_calculator.core.blacklist.service.CheckBlackListedPersonService;
 import com.example.insurance_calculator.messagebroker.ProposalGeneratorQueueSender;
 import com.example.insurance_calculator.core.underwriting.TravelPremiumCalculationResult;
 import com.example.insurance_calculator.core.underwriting.TravelUnderwriting;
@@ -30,15 +31,16 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
     @Autowired
     private ProposalGeneratorQueueSender queueSender;
 
+    @Autowired
+    private CheckBlackListedPersonService checkBlackListedPersonService;
+
 
     @Override
     public TravelCalculatePremiumCoreResult calculatePremium(TravelCalculatePremiumCoreCommand command) {
-        return buildResult(command.getAgreement());
-//        List<ValidationErrorDTO> errors = validator.validate(command.getAgreement());
-//        return errors.isEmpty()
-//                ? buildResult(command.getAgreement())
-//                : buildResult(errors)
-//                ;
+        List<ErrorDTO> errors = checkBlackListedPersonService.checkPersons(command.getAgreement());
+        return errors.isEmpty()
+                ? buildResult(command.getAgreement())
+                : buildResult(errors);
     }
 
 
@@ -60,6 +62,7 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
         return result;
     }
 
+
     private void calculatePremiumForEachRisk(AgreementDTO agreement) {
         agreement.getPersons().forEach(person -> {
             TravelPremiumCalculationResult result = underwriting.calculatePremium(agreement, person);
@@ -75,7 +78,7 @@ public class TravelCalculatePremiumServiceImpl implements TravelCalculatePremium
                 .map(RiskDTO::getPremium)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
-    private TravelCalculatePremiumCoreResult buildResult(List<ValidationErrorDTO> errors) {
+    private TravelCalculatePremiumCoreResult buildResult(List<ErrorDTO> errors) {
         TravelCalculatePremiumCoreResult result = new TravelCalculatePremiumCoreResult();
         result.setErrors(errors);
         return result;

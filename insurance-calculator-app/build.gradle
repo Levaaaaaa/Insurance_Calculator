@@ -79,6 +79,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.rabbitmq/amqp-client
 	implementation 'com.rabbitmq:amqp-client:5.25.0'
 
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux
+	implementation("org.springframework.boot:spring-boot-starter-webflux:3.4.4")
+
 	compileOnly('org.projectlombok:lombok:1.18.30')
 	// https://mvnrepository.com/artifact/org.mapstruct/mapstruct
 	compileOnly 'org.mapstruct:mapstruct:1.6.3'
@@ -100,6 +103,12 @@ dependencies {
 	testImplementation('com.h2database:h2:1.4.200')
 	// https://mvnrepository.com/artifact/org.mockito/mockito-core
 	testImplementation('org.mockito:mockito-core:5.11.0')
+
+	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-contract-wiremock
+	testImplementation 'org.springframework.cloud:spring-cloud-contract-wiremock:4.2.1'
+	// https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock-jre8-standalone
+	testImplementation 'com.github.tomakehurst:wiremock-jre8-standalone:2.35.1'
+//	testImplementation "org.wiremock:wiremock:3.12.1"
 
 	test {
 		useJUnitPlatform()

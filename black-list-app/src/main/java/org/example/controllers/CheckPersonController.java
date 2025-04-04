@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
@@ -15,7 +17,7 @@ public class CheckPersonController {
     @Autowired
     private CheckPersonService checkPersonService;
 
-    @GetMapping(consumes = "application/json", produces = "application/json")
+    @PostMapping(consumes = "application/json", produces = "application/json")
     public ResponseEntity<?> check(@RequestBody BlackListedPersonDTO person) {
         BlackListedPersonDTO result = checkPersonService.checkPerson(person);
         return ResponseEntity.ok(result);

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import static com.example.insurance_calculator.core.util.GeneratePersonIc.generatePersonIcs;
 
@@ -79,7 +80,7 @@ public class ConverterV2DTO {
         } else{
                 agreement.setPersons(request.getPersons().stream().map(this::buildPerson).toList());
             }
-        agreement.setPersons(generatePersonIcs(agreement));
+//        agreement.setPersons(generatePersonIcs(agreement));
 
         agreement.setCost(request.getCost());
         return agreement;
@@ -117,6 +118,7 @@ public class ConverterV2DTO {
         person.setPersonLastName(requestPerson.getPersonLastName());
         person.setMedicalRiskLimitLevel(requestPerson.getMedicalRiskLimitLevel());
         person.setPersonBirthDate(requestPerson.getPersonBirthDate());
+        person.setPersonIc(UUID.fromString(requestPerson.getPersonIc()));
         if (requestPerson.getPersonMedicalStatus() == null) {
             person.setPersonMedicalStatus(null);
         }

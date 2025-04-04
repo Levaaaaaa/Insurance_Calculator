@@ -19,7 +19,7 @@ public class BlackListedPersonDTO {
     private String lastName;
 
     @NotBlank(message = "ERROR_CODE_3")
-    @Pattern(regexp = "/[0-9]{8}-[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{16}", message = "ERROR_CODE_4")
+    @Pattern(regexp = "/[0-9]{8}-[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{12}", message = "ERROR_CODE_4")
     private String personCode;
 
     private boolean blackListed;

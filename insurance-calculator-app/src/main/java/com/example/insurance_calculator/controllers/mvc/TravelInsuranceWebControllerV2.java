@@ -6,7 +6,7 @@ import com.example.insurance_calculator.core.api.command.calculate.TravelCalcula
 import com.example.insurance_calculator.core.api.dto.v2.ConverterV2DTO;
 import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumRequestV2;
 import com.example.insurance_calculator.core.api.dto.v2.TravelCalculatePremiumResponseV2;
-import com.example.insurance_calculator.services.calculate.TravelCalculatePremiumService;
+import com.example.insurance_calculator.core.services.calculate.TravelCalculatePremiumService;
 import com.google.common.base.Stopwatch;
 
 import jakarta.validation.Valid;

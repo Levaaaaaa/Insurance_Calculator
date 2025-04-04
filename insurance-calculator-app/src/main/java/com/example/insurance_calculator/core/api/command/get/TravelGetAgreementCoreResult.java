@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.example.insurance_calculator.core.api.dto.AgreementDTO;
-import com.example.insurance_calculator.core.api.dto.ValidationErrorDTO;
+import com.example.insurance_calculator.core.api.dto.ErrorDTO;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TravelGetAgreementCoreResult {
-    private List<ValidationErrorDTO> errors;
+    private List<ErrorDTO> errors;
     private AgreementDTO agreementDTO;
 
     private GetResultStatus status;
